@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <view name="About">
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title id="title"></title>
+
+        <link rel="stylesheet" href="../../public/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../../public/css/vuetify.min.css">
+        <link rel="stylesheet" href="../../public/css/style.css">
+    </head>
+
+    <body>
+        <div id="app">
+            <v-app id="inspire">
+                <v-app-bar app color="white" flat>
+                    <v-container class="py-0 fill-height">
+                        <p>
+                            Nous utilisons Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, et Electron <span id="electron-version"></span>.
+                        </p>
+                    </v-container>
+                </v-main>
+            </v-app>
+        </div>
+        
+
+        <script src="../../public/js/vue.min.js"></script>
+        <script src="../../public/js/vuetify.min.js"></script>
+        <script src="../js/home.js"></script>
+        <script src="../js/render.js"></script>
+    </body>
+</html>

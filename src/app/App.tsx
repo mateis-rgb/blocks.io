@@ -1,8 +1,18 @@
 import Blueprint from "./blueprint/Blueprint";
+import Ide from "./ide/Ide";
+import Navbar from "./components/Navbar";
 
 const App = () => {
 	return (
-		<Blueprint />
+		<>
+			<Navbar />
+
+			<main>
+				{/* <Blueprint /> */}
+				
+				<Ide />
+			</main>
+		</>
 	);
 }
 

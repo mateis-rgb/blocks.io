@@ -1,15 +1,9 @@
-import { useNavigate } from "react-router";
-
-import ButtonComponent from "./components/ButtonComponent";
+import Blueprint from "./blueprint/Blueprint";
 
 const App = () => {
-	const navigate = useNavigate();
-
 	return (
-		<div>
-			<ButtonComponent color="blue" label="go error" handleClick={() => navigate("/efje")} />
-		</div>
+		<Blueprint />
 	);
 }
 
-export default App;
+export default App

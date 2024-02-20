@@ -6,7 +6,7 @@ import NodeComponent from './components/NodeComponent';
 import 'reactflow/dist/style.css';
 
 const initialNodes: Node[] = [
-	{ id: '1', data: { label: 'Node 1' }, position: { x: 5, y: 5 } },
+	{ id: '1', type: "node-comp", data: { label: 'Node 1' }, position: { x: 5, y: 5 } },
 	{ id: '2', data: { label: 'Node 2' }, position: { x: 5, y: 100 } },
 ];
  

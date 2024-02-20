@@ -1,79 +1,32 @@
-function transformCompleteTypeScriptCode(code: string): any[] {
-	const result: any[] = [];
+import { Variable, Struct } from "./ts-types";
 
-	// Expression régulière pour extraire les déclarations de variable
-	const variableDeclarationRegex = /(?:const|let|var)\s+(\w+):\s+([\w\s]+)\s*=\s*(.*?);/g;
-
-	let match;
-	while ((match = variableDeclarationRegex.exec(code)) !== null) {
-	const [, name, type, value] = match;
-	result.push({
-		struct: match[1],
-		name,
-		type,
-		value: JSON.parse(value),
-	});
-	}
-
-	// Expression régulière pour extraire les déclarations de fonction
-	const functionDeclarationRegex = /function\s+(\w+)\((.*?)\):\s+([\w\s]+)\s*{([\s\S]*?)}/g;
-
-	while ((match = functionDeclarationRegex.exec(code)) !== null) {
-	const [, functionName, parametersStr, returnType, operationsStr] = match;
-	const parameters = parametersStr
-		.split(',')
-		.map((param) => {
-		const [paramName, paramType] = param.trim().split(':');
-		return { name: paramName, type: paramType.trim() };
-		});
-
-	const operations = operationsStr
-		.trim()
-		.split('\n')
-		.map((op) => {
-		return { opType: 'return', op: op.trim() };
-		});
-
-	result.push({
-		struct: 'function',
-		name: functionName,
-		parameters,
-		returnType,
-		operations,
-	});
-	}
-
-	// Ajoutez d'autres expressions régulières pour traiter d'autres fonctionnalités de TypeScript, par exemple, les interfaces, les classes, etc.
-
-	return result;
+const convertString = (expression: string): any => {
+	if (parseInt(expression)) return parseInt(expression);
+	if (parseFloat(expression)) return parseFloat(expression);
+	if (expression === "true" || expression === "false") return Boolean(expression);
 }
 
-// Exemple d'utilisation
-const codeString = `
-	const toto: string = "coucou";
-	let hello: number = 12;
+// "const hello: number = 34;"
+const translateVariable = (expression: string) => {
+	const splited = expression.split(" ");
+	const spLength = splited.length;
+	
+	
 
-	function add(a: number, b: number): number {
-	return a + b;
+	// Variable typé
+	if (spLength === 5) {
+		const returned = {
+			struct: splited[0],
+			name: splited[1].split(":")[0],
+			value: splited[spLength-1].split(";")[0],
+			type: splited[2]
+		}
+
 	}
+	// Variable non-typé
+	else if (spLength === 4) {
 
-	interface Person {
-	name: string;
-	age: number;
 	}
+}
 
-	class MyClass {
-	private x: number;
-
-	constructor(value: number) {
-		this.x = value;
-	}
-
-	getX(): number {
-		return this.x;
-	}
-	}
-`;
-
-const transformedCode = transformCompleteTypeScriptCode(codeString);
-console.log(JSON.stringify(transformedCode, null, 2));
+console.log(translateVariable("const hello: number = 34;"));

@@ -8,9 +8,9 @@ const App = () => {
 			<Navbar />
 
 			<main>
-				{/* <Blueprint /> */}
+				<Blueprint />
 				
-				<Ide />
+				{/* <Ide /> */}
 			</main>
 		</>
 	);
